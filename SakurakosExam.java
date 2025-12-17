@@ -9,12 +9,21 @@ public class SakurakosExam {
             int a = sc.nextInt();
             int b = sc.nextInt();
 
-            if (a % 2 == 0) {
-                System.out.println("YES");
-            } else {
-                if (b >= 1) System.out.println("YES");
-                else System.out.println("NO");
+            boolean possible = false;
+
+            // s1 ranges from -a to a, step 2
+            for (int s1 = -a; s1 <= a; s1 += 2) {
+                // s2 ranges from -b to b, step 2
+                for (int s2 = -b; s2 <= b; s2 += 2) {
+                    if (s1 + 2 * s2 == 0) {
+                        possible = true;
+                        break;
+                    }
+                }
+                if (possible) break;
             }
+
+            System.out.println(possible ? "YES" : "NO");
         }
     }
 }
