@@ -1,38 +1,34 @@
-import java.util.*;
+import java.util.Scanner;
 
-public class Okea{
+public class Okea {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        if (!sc.hasNextInt()) return;
         int t = sc.nextInt();
 
         while (t-- > 0) {
             int n = sc.nextInt();
             int k = sc.nextInt();
 
-            // Impossible case
-            if (k % 2 == 1 && k > 1) {
+            if (k == 1) {
+                System.out.println("YES");
+                for (int i = 1; i <= n; i++) {
+                    System.out.println(i);
+                }
+            } else if (n % 2 != 0) {
                 System.out.println("NO");
-                continue;
-            }
-
-            System.out.println("YES");
-
-            int[][] grid = new int[n][k];
-            int num = 1;
-
-            // Fill column-wise
-            for (int j = 0; j < k; j++) {
-                for (int i = 0; i < n; i++) {
-                    grid[i][j] = num++;
+            } else {
+                System.out.println("YES");
+                for (int i = 1; i <= n; i++) {
+                    StringBuilder sb = new StringBuilder();
+                    int current = i;
+                    for (int j = 0; j < k; j++) {
+                        sb.append(current);
+                        if (j < k - 1) sb.append(" ");
+                        current += n;
+                    }
+                    System.out.println(sb.toString());
                 }
-            }
-
-            // Print grid
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < k; j++) {
-                    System.out.print(grid[i][j] + " ");
-                }
-                System.out.println();
             }
         }
     }
